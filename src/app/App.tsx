@@ -3,12 +3,14 @@ import { RootState } from "./store.ts";
 import viteLogo from '/vite.svg';
 import './styles/App.css';
 import { decrement, increment } from '../features/counter/counterSlice';
+import {Skeleton} from "../shared/ui/Skeleton";
 function App() {
   const count = useSelector((state: RootState) => state.counter.value)
   const dispatch = useDispatch()
   return (
     <>
       <div>
+        <Skeleton width={600} height={24} />
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
