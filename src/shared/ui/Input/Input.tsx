@@ -1,12 +1,9 @@
 import React, {
   InputHTMLAttributes,
-  memo,
   useEffect,
   useRef,
   useState,
 } from 'react';
-
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import cls from './Input.module.scss';
 
@@ -23,7 +20,7 @@ interface InputProps extends HTMLInputProps {
   readonly?: boolean;
 }
 
-export const Input = memo((props: InputProps) => {
+export const Input = (props: InputProps) => {
   const {
     className,
     value,
@@ -63,12 +60,8 @@ export const Input = memo((props: InputProps) => {
     setCaretPosition(e?.target?.selectionStart || 0);
   };
 
-  const mods: Mods = {
-    [cls.readonly]: readonly,
-  };
-
   return (
-    <div className={classNames(cls.InputWrapper, {}, [className])}>
+    <div>
       {placeholder && (
         <div className={cls.placeholder}>{`${placeholder}>`}</div>
       )}
@@ -96,4 +89,4 @@ export const Input = memo((props: InputProps) => {
       </div>
     </div>
   );
-});
+};

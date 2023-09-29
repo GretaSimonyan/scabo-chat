@@ -1,29 +1,13 @@
 import { memo } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-
 import cls from './Text.module.scss';
-
-export enum TextTheme {
-  PRIMARY = 'primary',
-  ERROR = 'error',
-  INVERTED = 'inverted',
-}
 
 interface TextProps {
   className?: string;
   title?: string;
   text?: string;
-  theme?: TextTheme;
-  align?: TextAlign;
   size?: TextSize;
   'data-testid'?: string;
-}
-
-export enum TextAlign {
-  RIGHT = 'right',
-  LEFT = 'left',
-  CENTER = 'center',
 }
 
 export enum TextSize {
@@ -42,25 +26,16 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
 
 export const Text = memo((props: TextProps) => {
   const {
-    className,
     text,
     title,
-    theme = TextTheme.PRIMARY,
-    align = TextAlign.LEFT,
     size = TextSize.M,
     'data-testid': dataTestId = 'Text',
   } = props;
 
-  const mods: Mods = {
-    [cls[theme]]: true,
-    [cls[align]]: true,
-    [cls[size]]: true,
-  };
-
   const HeaderTag = mapSizeToHeaderTag[size];
 
   return (
-    <div className={classNames(cls.Text, mods, [className])}>
+    <div>
       {title && (
         <HeaderTag className={cls.title} data-testid={`${dataTestId}.Header`}>
           {title}
